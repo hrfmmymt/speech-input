@@ -1,0 +1,52 @@
+{
+  "name": "speech-input",
+  "version": "0.0.0",
+  "main": "./src/speech-input.mjs",
+  "browser": "src/speech-input.mjs",
+  "module": "dist/speech-input.min.mjs",
+  "unpkg": "dist/speech-input.min.mjs",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "description": "",
+  "author": "Hirofumi Miyamoto <hrfmmymt@gmail.com> (https://github.com/hrfmmymt/)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf ./dist && mkdir dist",
+    "lint": "npx eslint './src/*.mjs'",
+    "build": "npm run clean && npx terser ./src/speech-input.mjs -m toplevel=true --ecma=8 -o ./dist/speech-input.min.mjs",
+    "prepublish": "npm run lint && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrfmmymt/speech-input.git"
+  },
+  "keywords": [
+    "SpeechRecognition",
+    "speech",
+    "recognition",
+    "sound",
+    "record"
+  ],
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "terser": "^4.0.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "serviceworker": true,
+      "node": true
+    },
+    "rules": {
+      "require-jsdoc": 0
+    }
+  }
+}
