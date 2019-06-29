@@ -1,4 +1,5 @@
-const NAME = "speech-input";
+import { APPNAME } from './stats.mjs';
+import './select-langs.mjs';
 
 let srEnable = false;
 let srActivated = false;
@@ -22,21 +23,25 @@ template.innerHTML = `
       display: none;
     }
 
-    .${NAME}-wrapper {
+    .${APPNAME}-wrapper {
       display: flex;
       flex-direction: column;
       width: 50vw;
       height: 100vh;
     }
 
-    .${NAME}-wrapper .ta,
-    .${NAME}-wrapper .buttons {
+    .${APPNAME}-wrapper .ta,
+    .${APPNAME}-wrapper .buttons {
       margin-bottom: 2em;
     }
   </style>
 
-  <div class="${NAME}-wrapper">
+  <div class="${APPNAME}-wrapper">
     <textarea id="speechInputContent" cols="50" rows="10" class="ta"></textarea>
+    <select-langs></select-langs>
+    <label for="recordToggle">
+      <input type="checkbox" id="recordToggle" />recording while speech recognize
+    </label>
     <div class="buttons">
       <button id="speechStart" class="btn">start</button>
       <button id="speechStop" class="btn">stop</button>
@@ -58,15 +63,30 @@ class SpeechRecognitionToTextarea extends HTMLElement {
     this.startBtn = shadowRoot.querySelector("#speechStart");
     this.stopBtn = shadowRoot.querySelector("#speechStop");
     this.textArea = shadowRoot.querySelector("#speechInputContent");
+    this.checkbox = shadowRoot.querySelector("#recordToggle");
     this.audio = shadowRoot.querySelector("#player");
+
+    this.select = shadowRoot.querySelector("select-langs");
 
     // set event listner
     this.startBtn.addEventListener(
       "click",
-      ev => this.startRecognition(),
+      () => this.startRecognition(),
       false
     );
-    this.stopBtn.addEventListener("click", ev => this.stopRecognition(), false);
+    this.stopBtn.addEventListener("click", () => this.stopRecognition(), false);
+    this.checkbox.addEventListener(
+      "change",
+      () => {
+        const isChecked = this.checkbox.checked;
+        if (isChecked) {
+          this.recordable = true;
+        } else {
+          this.recordable = false;
+        }
+      },
+      false
+    );
   }
 
   connectedCallback() {
@@ -74,7 +94,6 @@ class SpeechRecognitionToTextarea extends HTMLElement {
       window.SpeechRecognition =
         window.webkitSpeechRecognition || window.mozSpeechRecognition;
     srEnable = !!window.SpeechRecognition;
-    console.log(srEnable);
   }
 
   startRecognition() {
@@ -84,6 +103,7 @@ class SpeechRecognitionToTextarea extends HTMLElement {
     }
 
     const speechRecognition = new window.SpeechRecognition();
+    speechRecognition.lang = this.select.dataset.lang;
     srActivated = true;
     speechRecognition.start();
     console.log("speechRecognition.start()", speechRecognition);
@@ -125,7 +145,7 @@ class SpeechRecognitionToTextarea extends HTMLElement {
       }
     });
 
-    this.recording();
+    if (this.recordable) this.recording();
   }
 
   stopRecognition() {
@@ -199,4 +219,4 @@ class SpeechRecognitionToTextarea extends HTMLElement {
   }
 }
 
-customElements.define(NAME, SpeechRecognitionToTextarea);
+customElements.define(APPNAME, SpeechRecognitionToTextarea);
