@@ -1,7 +1,7 @@
 {
   "name": "speech-input",
-  "version": "0.0.0",
-  "main": "./src/speech-input.mjs",
+  "version": "0.0.1",
+  "main": "src/speech-input.mjs",
   "browser": "src/speech-input.mjs",
   "module": "dist/speech-input.min.mjs",
   "unpkg": "dist/speech-input.min.mjs",
@@ -12,7 +12,6 @@
   "description": "",
   "author": "Hirofumi Miyamoto <hrfmmymt@gmail.com> (https://github.com/hrfmmymt/)",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "clean": "rm -rf ./dist && mkdir dist",
     "lint": "npx eslint './src/*.mjs'",
