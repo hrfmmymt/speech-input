@@ -1,4 +1,5 @@
 # speech-input
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/speech-input)
 
 A custom element that allows you to easily try a SpeechRecognition API on your site. And you can optionaly recording while speech recognition.
 
@@ -22,3 +23,4 @@ npm install --save speech-input
 
 ## License
 [MIT License](https://github.com/hrfmmymt/speechinput/blob/master/LICENSE)
+
