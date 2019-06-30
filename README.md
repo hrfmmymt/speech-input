@@ -17,7 +17,8 @@ npm install --save speech-input
 <speech-input></speech-input>
 ```
 
-## Demo
+## Preview
+<img src="https://user-images.githubusercontent.com/4241290/60393033-d03bab00-9b49-11e9-8dec-f29b8302f4f2.png" width="400" alt="preview default"> <img src="https://user-images.githubusercontent.com/4241290/60392993-062c5f80-9b49-11e9-8695-66dcc867aef2.png" width="400" alt="preview inputted state">
 
 ## License
 [MIT License](https://github.com/hrfmmymt/speechinput/blob/master/LICENSE)
