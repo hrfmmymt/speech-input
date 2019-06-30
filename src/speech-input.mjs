@@ -1,5 +1,5 @@
-import { APPNAME } from './stats.mjs';
-import './select-langs.mjs';
+import { APPNAME } from './stats';
+import './select-langs';
 
 let srEnable = false;
 let srActivated = false;

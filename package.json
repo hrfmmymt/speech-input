@@ -13,9 +13,9 @@
   "author": "Hirofumi Miyamoto <hrfmmymt@gmail.com> (https://github.com/hrfmmymt/)",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf ./dist && mkdir dist",
+    "clean": "rm -rf ./dist",
     "lint": "npx eslint './src/*.mjs'",
-    "build": "npm run clean && npx terser ./src/speech-input.mjs -m toplevel=true --ecma=8 -o ./dist/speech-input.min.mjs",
+    "build": "npm run clean && npx webpack",
     "prepublish": "npm run lint && npm run build"
   },
   "repository": {
@@ -31,7 +31,9 @@
   ],
   "devDependencies": {
     "eslint": "^6.0.1",
-    "terser": "^4.0.0"
+    "path": "^0.12.7",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
   },
   "eslintConfig": {
     "parserOptions": {

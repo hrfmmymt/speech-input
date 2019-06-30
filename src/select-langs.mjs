@@ -1,4 +1,4 @@
-import { LANGS } from './stats.mjs';
+import { LANGS } from './stats';
 
 const template = document.createElement("template");
 template.innerHTML = `<select id="speechInputSelect"></select>`;
